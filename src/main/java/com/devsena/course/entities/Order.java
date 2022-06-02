@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 
 import com.devsena.course.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "tb_order")
 public class Order implements Serializable {
