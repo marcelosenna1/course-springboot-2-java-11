@@ -21,11 +21,10 @@ public class UserService {
 		return repository.findAll();
 	}
 
-	public User findById(Long id) {
+	public Optional<User> findById(Long id) {
 
-		Optional<User> obj = repository.findById(id);
+		return repository.findById(id);
 
-		return obj.get();
 	}
 
 	public User insert(User obj) {
@@ -35,8 +34,26 @@ public class UserService {
 
 	public void delete(Long id) {
 
-		
 		repository.deleteById(id);
 		;
+	}
+
+	public User update(long id, User obj) {
+
+		@SuppressWarnings("deprecation")
+		User entity = repository.getById(id);
+
+		upDateData(entity, obj);
+
+		return repository.save(entity);
+
+	}
+
+	private void upDateData(User entity, User obj) {
+
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+
 	}
 }

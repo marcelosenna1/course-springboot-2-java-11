@@ -11,9 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "tb_user")
