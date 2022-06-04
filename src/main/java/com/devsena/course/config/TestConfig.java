@@ -22,7 +22,7 @@ import com.devsena.course.repositories.ProductRepository;
 import com.devsena.course.repositories.UserRepository;
 
 @Configuration
-@Profile("test")
+@Profile("dev")
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
