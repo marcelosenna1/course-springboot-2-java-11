@@ -3,6 +3,8 @@ package com.devsena.course.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -50,12 +52,17 @@ public class UserService {
 
 	public User update(long id, User obj) {
 
-		@SuppressWarnings("deprecation")
-		User entity = repository.getById(id);
+		try {
+			@SuppressWarnings("deprecation")
+			User entity = repository.getById(id);
 
-		upDateData(entity, obj);
+			upDateData(entity, obj);
 
-		return repository.save(entity);
+			return repository.save(entity);
+
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 
 	}
 
