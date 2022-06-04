@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.devsena.course.entities.User;
 import com.devsena.course.repositories.UserRepository;
+import com.devsena.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -23,7 +24,7 @@ public class UserService {
 
 	public Optional<User> findById(Long id) {
 
-		return repository.findById(id);
+		return Optional.of(repository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id)));
 
 	}
 
@@ -35,7 +36,6 @@ public class UserService {
 	public void delete(Long id) {
 
 		repository.deleteById(id);
-		;
 	}
 
 	public User update(long id, User obj) {
